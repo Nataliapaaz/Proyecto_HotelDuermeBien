@@ -10,6 +10,7 @@ class Ventana:
 
     def cargar(self):
         ventana = Tk()
+        self.ventana = ventana
         #titulo
         ventana.title(self.titulo)
         #tamaño
@@ -21,14 +22,19 @@ class Ventana:
         rutaIcono = os.path.abspath(self.icon)
         if not os.path.isfile(rutaIcono):
             rutaIcono = os.path.abspath('./Tkinter/images/hotel-logo.ico')
-        texto = Label(ventana, text=rutaIcono)
+        else:
+            ventana.iconbitmap('hotel-logo.ico')
+
+    def addTexto(self, textoVisible):
+        texto = Label(self.ventana, text=textoVisible )
         texto.pack()
-        #icono
-        ventana.iconbitmap('hotel-logo.ico')
-        ventana.mainloop()
+
+    def mostrar(self):
+        self.ventana.mainloop()
 
 #Creacion del objeto (ventana)
 
 ventana = Ventana()
 ventana.cargar()
-
+ventana.addTexto('Bienvenido')
+ventana.mostrar()
