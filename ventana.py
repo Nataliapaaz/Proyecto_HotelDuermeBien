@@ -27,14 +27,34 @@ class Ventana:
 
     def addTexto(self, textoVisible):
         texto = Label(self.ventana, text=textoVisible )
+        texto.config(
+            fg='white',
+            bg='black',
+            padx=750,
+            pady=30,
+            font=('Century Gothic', 20)
+            )
+        texto.pack()
+
+    def addTextoSecundario(self, textoVisible):
+        texto = Label(self.ventana, text=textoVisible )
+        texto.config(
+            fg='black',
+            bg='white',
+            font=('Century Gothic', 14),
+            justify=RIGHT,
+            anchor=W
+            )
         texto.pack()
 
     def mostrar(self):
         self.ventana.mainloop()
 
+
 #Creacion del objeto (ventana)
 
 ventana = Ventana()
 ventana.cargar()
-ventana.addTexto('Bienvenido')
+ventana.addTexto('Bienvenido a Duerme Bien App')
+ventana.addTextoSecundario('Por favor blablabla')
 ventana.mostrar()
