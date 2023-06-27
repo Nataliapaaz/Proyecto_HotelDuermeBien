@@ -42,10 +42,10 @@ class Ventana:
             fg='black',
             bg='white',
             font=('Century Gothic', 14),
-            justify=RIGHT,
-            anchor=W
+            width=100,
+            height=10
             )
-        texto.pack()
+        texto.pack(anchor=W)
 
     def mostrar(self):
         self.ventana.mainloop()
