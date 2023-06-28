@@ -24,3 +24,5 @@ class DAO():
         values = (tipoUsuario.getIdTipoUsuario(),tipoUsuario.getTipo())
         self.__cursor.execute(sql,values)
         self.fin()
+    
+    
