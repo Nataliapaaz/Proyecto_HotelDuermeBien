@@ -4,6 +4,7 @@ from reserva import Reserva
 from tipohabitacion import TipoHabitacion
 from tipousuario import TipoUsuario
 from huesped import Huesped
+from DAO import DAO
 
 
 def validarNumero(numero):
@@ -51,6 +52,7 @@ def registrarUsuario():
 
 def registrarTipoUsuario(lista_tipos_usuario):
     idTipoUsuario = input('Ingrese el ID del tipo de usuario: ')
+
     
 # Validación de ID de tipo de usuario repetido
     for tipo_usuario in lista_tipos_usuario:
@@ -68,7 +70,8 @@ def registrarTipoUsuario(lista_tipos_usuario):
     
     tipoUsuario = TipoUsuario(idTipoUsuario, nombreTipoUsuario)
 
-                        # Lógica para almacenar en la base de datos 
+    dao = DAO()
+    dao.registrarTipoUsuario(tipoUsuario)   
     
     print('El tipo de usuario se registró correctamente:')
     print(tipoUsuario)
