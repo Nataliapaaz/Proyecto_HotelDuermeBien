@@ -34,7 +34,7 @@ def registrarUsuario():
     password = input('Ingrese su password: ')
     rut = input('Ingrese rut del usuario: ')
     edad = validarNumero('la edad del usuario: ')
-
+    idTipo = validarNumero("el id del tipo de: ")
     #tipoUsuario = obtenerTipoUsuario(idTipoUsuario)
 
     #if tipoUsuario is None:
@@ -55,22 +55,23 @@ def registrarUsuario():
 
 def registrarTipoUsuario(lista_tipos_usuario):
     
-    
-    nombreTipoUsuario = input('Ingrese el nombre del tipo de usuario: ')
+    while True:    
+        nombreTipoUsuario = input('Ingrese si es Encargado o Administrador: ').lower()
     
 # Validación de nombre de tipo de usuario repetido
-    for tipo_usuario in lista_tipos_usuario:
-        if tipo_usuario.getNombreTipoUsuario() == nombreTipoUsuario:
-            print('Error: El nombre de tipo de usuario ya existe.')
-            return
-    
-    tipoUsuario = TipoUsuario(nombreTipoUsuario,)
-
-    dao = DAO()
-    dao.registrarTipoUsuario(tipoUsuario)   
-    
-    print('El tipo de usuario se registró correctamente:')
-    print(tipoUsuario)
+        if nombreTipoUsuario == "encargado":
+            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            dao = DAO()
+            dao.registrarTipoUsuario(tipoUsuario)
+            break
+        elif nombreTipoUsuario == "administrador":
+            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            dao = DAO()
+            dao.registrarTipoUsuario(tipoUsuario)
+            break
+        else:
+            print("Tipo de usuario invalido, intente nuevamente")
+            
 
 def registrarHabitacion(lista_habitaciones):
     codigoHabitacion = input('Ingrese el código de la habitación: ')
