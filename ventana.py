@@ -5,7 +5,7 @@ class Ventana:
     def __init__(self):
         self.titulo = 'Hotel Duerme Bien App'
         self.icon = './images/hotel-logo.ico'
-        self.size = '750x450'
+        self.size = '750x550'
         self.resizable = False
 
     def cargar(self):
@@ -34,7 +34,7 @@ class Ventana:
             pady=30,
             font=('Century Gothic', 20)
             )
-        texto.pack()
+        texto.pack(side=TOP)
 
     def addTextoSecundario(self, textoVisible):
         texto = Label(self.ventana, text=textoVisible )
@@ -47,6 +47,21 @@ class Ventana:
             )
         texto.pack(anchor=W)
 
+    def addTextoPie(self, textoPie):
+        marco = Frame(self.ventana, width=250, height=50)
+        marco.config(bg='lightblue')
+        marco.pack(side=BOTTOM, anchor=S, fill=X, expand=YES)
+        marco.pack_propagate(False)
+
+        textoPie = Label(marco, text=textoPie)
+        textoPie.config(
+            bg='lightblue',
+            font=('Century Gothic', 11),
+            height=10,
+            width=30,
+            anchor=CENTER)
+        textoPie.pack()
+
     def mostrar(self):
         self.ventana.mainloop()
 
@@ -57,4 +72,5 @@ ventana = Ventana()
 ventana.cargar()
 ventana.addTexto('Bienvenido a Duerme Bien App')
 ventana.addTextoSecundario('Por favor blablabla')
+ventana.addTextoPie('Todos los derechos reservados')
 ventana.mostrar()

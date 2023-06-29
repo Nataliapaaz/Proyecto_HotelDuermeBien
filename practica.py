@@ -1,5 +1,4 @@
 from tkinter import *
-from PIL import Image, ImageTk
 
 ventana = Tk()
 ventana.geometry('500x500')
@@ -14,9 +13,15 @@ texto.pack()
 texto = Label(ventana, text='Por favor ingresa tu usuario y tu contraseña')
 texto.pack()
 
-imagen = Image.open('./Tkinter/images/1.png')
-render = imageTk.PhotoImagen(imagen)
+marco = Frame(ventana, width=250, height=50)
+marco.config(bg='lightblue')
+marco.pack(side=BOTTOM, anchor=S, fill=X, expand=YES)
+marco.pack_propagate(False)
 
-Label(ventana, image=render).pack()
+textoPie = Label(marco, text='todos los derechos reservados')
+textoPie.config(
+    bg='lightblue',
+    font=('Century Gothic', 11))
+textoPie.pack(side=BOTTOM, anchor=CENTER)
 
 ventana.mainloop()
