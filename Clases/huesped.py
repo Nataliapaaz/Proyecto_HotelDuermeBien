@@ -1,12 +1,12 @@
 class Huesped:
-    def __init__(self, idHuesped, rut, nombre, edad, fechaIngreso, fechaSalida, codigoHabitacion):
+    def __init__(self, rut, nombre, edad, fechaIngreso, fechaSalida,idHuesped=-1):
         self.__idHuesped = idHuesped
         self.__rut = rut
         self.__nombre = nombre
         self.__edad = edad
         self.__fechaIngreso = fechaIngreso
         self.__fechaSalida = fechaSalida
-        self.__codigoHabitacion = codigoHabitacion
+        ##self.__codigoHabitacion = codigoHabitacion
     
     def getIdHuesped(self):
         return self.__idHuesped
@@ -44,19 +44,17 @@ class Huesped:
     def setFechaSalida(self, fechaSalida):
         self.__fechaSalida = fechaSalida
     
-    def getCodigoHabitacion(self):
-        return self.__codigoHabitacion
+    #def getCodigoHabitacion(self):
+    #    return self.__codigoHabitacion
     
-    def setCodigoHabitacion(self, codigoHabitacion):
-        self.__codigoHabitacion = codigoHabitacion
+    #def setCodigoHabitacion(self, codigoHabitacion):
+    #    self.__codigoHabitacion = codigoHabitacion
     
     def __str__(self):
         cadena = ""
-        cadena += f"ID Huésped: {self.__idHuesped}\n"
         cadena += f"Rut: {self.__rut}\n"
         cadena += f"Nombre: {self.__nombre}\n"
         cadena += f"Edad: {self.__edad}\n"
         cadena += f"Fecha de Ingreso: {self.__fechaIngreso}\n"
         cadena += f"Fecha de Salida: {self.__fechaSalida}\n"
-        cadena += f"Código de Habitación: {self.__codigoHabitacion}\n"
         return cadena

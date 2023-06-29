@@ -34,47 +34,44 @@ def registrarUsuario():
     password = input('Ingrese su password: ')
     rut = input('Ingrese rut del usuario: ')
     edad = validarNumero('la edad del usuario: ')
-    idTipoUsuario = input('Ingrese el ID del tipo de usuario: ')
+    idTipo = validarNumero("el id del tipo de: ")
+    #tipoUsuario = obtenerTipoUsuario(idTipoUsuario)
 
-    tipoUsuario = obtenerTipoUsuario(idTipoUsuario)
+    #if tipoUsuario is None:
+        #print('El tipo de usuario ingresado no existe.')
+        #return
 
-    if tipoUsuario is None:
-        print('El tipo de usuario ingresado no existe.')
-        return
+    usuario = Usuario(rut,nombre, usuario, password, edad, )
 
-    usuario = Usuario(nombre, usuario, password, rut, edad, tipoUsuario)
+    dao = DAO()
+    dao.registrarUsuario(usuario)
+
+    
 
     print('El usuario se registró correctamente:')
     print(usuario)
     print('Tipo de Usuario:')
-    print(tipoUsuario)
 
 
 def registrarTipoUsuario(lista_tipos_usuario):
-    idTipoUsuario = input('Ingrese el ID del tipo de usuario: ')
-
     
-# Validación de ID de tipo de usuario repetido
-    for tipo_usuario in lista_tipos_usuario:
-        if tipo_usuario.getIdTipoUsuario() == idTipoUsuario:
-            print('Error: El ID de tipo de usuario ya existe.')
-            return
-    
-    nombreTipoUsuario = input('Ingrese el nombre del tipo de usuario: ')
+    while True:    
+        nombreTipoUsuario = input('Ingrese si es Encargado o Administrador: ').lower()
     
 # Validación de nombre de tipo de usuario repetido
-    for tipo_usuario in lista_tipos_usuario:
-        if tipo_usuario.getNombreTipoUsuario() == nombreTipoUsuario:
-            print('Error: El nombre de tipo de usuario ya existe.')
-            return
-    
-    tipoUsuario = TipoUsuario(idTipoUsuario, nombreTipoUsuario)
-
-    dao = DAO()
-    dao.registrarTipoUsuario(tipoUsuario)   
-    
-    print('El tipo de usuario se registró correctamente:')
-    print(tipoUsuario)
+        if nombreTipoUsuario == "encargado":
+            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            dao = DAO()
+            dao.registrarTipoUsuario(tipoUsuario)
+            break
+        elif nombreTipoUsuario == "administrador":
+            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            dao = DAO()
+            dao.registrarTipoUsuario(tipoUsuario)
+            break
+        else:
+            print("Tipo de usuario invalido, intente nuevamente")
+            
 
 def registrarHabitacion(lista_habitaciones):
     codigoHabitacion = input('Ingrese el código de la habitación: ')
@@ -102,9 +99,10 @@ def registrarHabitacion(lista_habitaciones):
             print('Error: El pasajero ya está asignado a otra habitación.')
             return
 
-    habitacion = Habitacion(codigoHabitacion, numero, orientacion, ocupacion, reserva, tipoHabitacion, huesped)
+    habitacion = Habitacion(numero, orientacion, ocupacion, reserva, tipoHabitacion, huesped)
 
-                        # Lógica para almacenar la habitación en la base de datos o en la lista de habitaciones
+    dao = DAO()
+    dao.registrarHabitacion(habitacion)  # Lógica para almacenar la habitación en la base de datos o en la lista de habitaciones
 
     print('La habitación se registró correctamente:')
     print(habitacion)
@@ -117,48 +115,54 @@ def registrarHabitacion(lista_habitaciones):
 
     
 def registrarTipoHabitacion(lista_tipos_habitacion):
-    idHabitacion = input('Ingrese el ID de la habitación: ')
     numeroCamas = validarNumero('el número de camas de la habitación: ')
     numeroPasajeros = validarNumero('el número de pasajeros de la habitación: ')
 
     # Validación de ID de habitación repetido
-    for tipoHabitacion in lista_tipos_habitacion:
-        if tipoHabitacion.getIdHabitacion() == idHabitacion:
-            print('Error: El ID de habitación ya existe.')
-            return
     
-    tipoHabitacion = TipoHabitacion(idHabitacion, numeroCamas, numeroPasajeros)
+    tipoHabitacion = TipoHabitacion(numeroCamas, numeroPasajeros,)
+
+    dao = DAO()
+    dao.registrarTipoHabitacion(tipoHabitacion)
+
 
     lista_tipos_habitacion.append(tipoHabitacion)
+
+
 
     print('El tipo de habitación se registró correctamente:')
     print(tipoHabitacion)
 
 
 def registrarReserva():
-    idReserva = input('Ingrese el ID de la reserva: ')
+    
     numeroReserva = input('Ingrese el número de reserva: ')
     fechaIngreso = input('Ingrese la fecha de ingreso: ')
     fechaSalida = input('Ingrese la fecha de salida: ')
     capacidad = validarNumero('la cantidad de huespedes: ')
-    idUsuario = input('Ingrese el ID del usuario: ')
-    idHuesped = input('Ingrese el ID del huésped: ')
+    #idUsuario = input('Ingrese el ID del usuario: ')
+    #idHuesped = input('Ingrese el ID del huésped: ')
 
-    reserva = Reserva(idReserva, numeroReserva, fechaIngreso, fechaSalida, capacidad, idUsuario, idHuesped)
+    reserva = Reserva(numeroReserva, fechaIngreso, fechaSalida, capacidad,)
+
+    dao = DAO()
+    dao.registrarReserva(reserva)
 
     print('La reserva se registró correctamente:')
     print(reserva)
 
 def registrarHuesped():
-    idHuesped = input('Ingrese el ID del huésped: ')
     rut = input('Ingrese el rut del huésped: ')
     nombre = input('Ingrese el nombre del huésped: ')
     edad = validarNumero('la edad del huésped: ')
     fechaIngreso = input('Ingrese la fecha de ingreso: ')
     fechaSalida = input('Ingrese la fecha de salida: ')
-    codigoHabitacion = input('Ingrese el código de la habitación: ')
+    #codigoHabitacion = input('Ingrese el código de la habitación: ')
 
-    huesped = Huesped(idHuesped, rut, nombre, edad, fechaIngreso, fechaSalida, codigoHabitacion)
+    huesped = Huesped(rut, nombre, edad, fechaIngreso, fechaSalida,)
+
+    dao = DAO()
+    dao.registrarHuesped(huesped)
 
     print('El huésped se registró correctamente:')
     print(huesped)
