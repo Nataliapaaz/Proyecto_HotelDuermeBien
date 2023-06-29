@@ -30,5 +30,8 @@ label.grid(row=2, column=0, padx=5, pady=5)
 campoTexto = Entry(ventana)
 campoTexto.grid(row=2, column=1, padx=5, pady=5)
 
+boton = Button(ventana, text='Enviar')
+boton.grid(row=3, column=1)
+boton.config(padx=10, pady=10)
 
 ventana.mainloop()
