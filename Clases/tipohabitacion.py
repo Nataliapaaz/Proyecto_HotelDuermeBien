@@ -1,13 +1,7 @@
 class TipoHabitacion:
-    def __init__(self, idHabitacion, numeroCamas, numeroPasajeros):
-        self.__idHabitacion = idHabitacion
+    def __init__(self, numeroCamas, numeroPasajeros,idHabitacion=-1):
         self.__numeroCamas = numeroCamas
         self.__numeroPasajeros = numeroPasajeros
-    
-    def getIdHabitacion(self):
-        return self.__idHabitacion
-    
-    def setIdHabitacion(self, idHabitacion):
         self.__idHabitacion = idHabitacion
     
     def getNumeroCamas(self):
@@ -21,10 +15,15 @@ class TipoHabitacion:
     
     def setNumeroPasajeros(self, numeroPasajeros):
         self.__numeroPasajeros = numeroPasajeros
+        
+    def getIdHabitacion(self):
+        return self.__idHabitacion
+    
+    def setIdHabitacion(self, idHabitacion):
+        self.__idHabitacion = idHabitacion
     
     def __str__(self):
         cadena = ""
-        cadena += f"ID Habitación: {self.__idHabitacion}\n"
         cadena += f"Número de Camas: {self.__numeroCamas}\n"
         cadena += f"Número de Pasajeros: {self.__numeroPasajeros}\n"
         return cadena

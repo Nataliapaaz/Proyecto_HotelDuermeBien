@@ -1,7 +1,8 @@
 class TipoUsuario:
-    def __init__(self, idTipoUsuario, tipo):
-        self.__idTipoUsuario = idTipoUsuario
+    def __init__(self, tipo,idTipoUsuario = -1):
+        
         self.__tipo = tipo
+        self.__idTipoUsuario = idTipoUsuario
     
     def getIdTipoUsuario(self):
         return self.__idTipoUsuario
@@ -16,4 +17,7 @@ class TipoUsuario:
         self.__tipo = tipo
     
     def __str__(self):
-        return f"TipoUsuario: {self.__tipo}"
+        cadena = f'Tipo: {self.__tipo}'
+
+        return cadena
+
