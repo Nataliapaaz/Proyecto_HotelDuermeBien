@@ -28,29 +28,47 @@ def obtenerTipoUsuario(idTipoUsuario):
             return tipoUsuario
 
     return None
+
+
+
 def registrarUsuario():
     nombre = input('Ingrese nombre y apellido del usuario: ')
     usuario = input('Ingrese nombre de usuario: ')
     password = input('Ingrese su password: ')
     rut = input('Ingrese rut del usuario: ')
     edad = validarNumero('la edad del usuario: ')
-    idTipo = validarNumero("el id del tipo de: ")
     #tipoUsuario = obtenerTipoUsuario(idTipoUsuario)
 
     #if tipoUsuario is None:
         #print('El tipo de usuario ingresado no existe.')
         #return
 
-    usuario = Usuario(rut,nombre, usuario, password, edad, )
 
-    dao = DAO()
-    dao.registrarUsuario(usuario)
-
+    dao =DAO()
+    obtenerId =dao.obtenerTipos()
     
 
+    print(type(obtenerId))
+    idTipoUsuario = input("Ingrese si es encargado o admnistrador: ").lower()
+
+    for i in obtenerId:
+        if i[0]== "encargado":
+            idTipoUsuario = i[0]
+            usuario = Usuario(rut,nombre, usuario, password, edad,idTipoUsuario )
+            dao = DAO()
+            dao.registrarUsuario(usuario)
+            break
+        elif i[1]== "ädministrador":
+            idTipoUsuario = i[1]
+            usuario = Usuario(rut,nombre, usuario, password, edad,idTipoUsuario )
+            dao = DAO()
+            dao.registrarUsuario(usuario)
+            break
+        else:
+            print("El id no fue encontrado, intente nuevamente: ")
+
     print('El usuario se registró correctamente:')
-    print(usuario)
-    print('Tipo de Usuario:')
+
 
 
 def registrarTipoUsuario(lista_tipos_usuario):
@@ -60,12 +78,14 @@ def registrarTipoUsuario(lista_tipos_usuario):
     
 # Validación de nombre de tipo de usuario repetido
         if nombreTipoUsuario == "encargado":
-            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            idTipoUsuario = 1
+            tipoUsuario = TipoUsuario(idTipoUsuario,nombreTipoUsuario )
             dao = DAO()
             dao.registrarTipoUsuario(tipoUsuario)
             break
         elif nombreTipoUsuario == "administrador":
-            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
+            idTipoUsuario = 2
+            tipoUsuario = TipoUsuario(idTipoUsuario,nombreTipoUsuario)
             dao = DAO()
             dao.registrarTipoUsuario(tipoUsuario)
             break

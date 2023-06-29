@@ -1,13 +1,13 @@
 
 class Usuario:
-    def __init__(self, rut, nombre, usuario, password, edad,idUsuario=-1):
+    def __init__(self, rut, nombre, usuario, password, edad,idTipoUsuario,idUsuario= -1):
         
         self.__rut = rut
         self.__nombre = nombre
         self.__usuario = usuario
         self.__password = password
         self.__edad = edad
-        #self.__idTipoUsuario = idTipoUsuario
+        self.__idTipoUsuario = idTipoUsuario
         self.__idUsuario = idUsuario
     
     def getIdUsuario(self):
@@ -46,11 +46,11 @@ class Usuario:
     def setEdad(self, edad):
         self.__edad = edad
     
-    #def getIdTipoUsuario(self):
-    #    return self.__idTipoUsuario
+    def getIdTipoUsuario(self):
+        return self.__idTipoUsuario
     
-    #def setIdTipoUsuario(self, idTipoUsuario):
-    #    self.__idTipoUsuario = idTipoUsuario
+    def setIdTipoUsuario(self, idTipoUsuario):
+        self.__idTipoUsuario = idTipoUsuario
     
     def __str__(self):
         cadena = ''

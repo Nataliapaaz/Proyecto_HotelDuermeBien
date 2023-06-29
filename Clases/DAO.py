@@ -28,8 +28,8 @@ class DAO():
 
     def registrarTipoUsuario(self,tipoUsuario:TipoUsuario):
         self.inicio()
-        sql = "INSERT INTO tipoUsuario (tipo) VALUES (%s)"
-        values = (tipoUsuario.getTipo(),)
+        sql = "INSERT INTO tipoUsuario (idTipoUsuario,tipo) VALUES (%s,%s)"
+        values = (tipoUsuario.getIdTipoUsuario(),tipoUsuario.getTipo())
         self.__cursor.execute(sql,values)
         self.fin()
     
@@ -67,3 +67,11 @@ class DAO():
         values = (reserva.getNumeroReserva(),reserva.getFechaIngreso(),reserva.getFechaSalida(),reserva.getCapacidad(),)
         self.__cursor.execute(sql,values)
         self.fin()
+
+    def obtenerTipos(self):
+        self.inicio()
+        sql = "SELECT * FROM tipousuario"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
