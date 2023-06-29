@@ -3,9 +3,9 @@ from tkinter import *
 ventana = Tk()
 ventana.geometry('500x500')
 
-ventana.title('Formulario de usuario')
+ventana.title('Formulario de huesped')
 
-encabezado = Label(ventana, text='Formulario de Usuario')
+encabezado = Label(ventana, text='Formulario de Huesped')
 encabezado.config(
     fg='white',
     bg='darkblue',
@@ -30,28 +30,29 @@ label.grid(row=2, column=0, padx=5, pady=5)
 campoTexto = Entry(ventana)
 campoTexto.grid(row=2, column=1, padx=5, pady=5)
 
-#label para el campo de texto (usuario)
-label = Label(ventana, text='Usuario')
-label.grid(row=3, column=0, padx=5, pady=5)
-
-#campo de texto (usuario)
-campoTexto = Entry(ventana)
-campoTexto.grid(row=3, column=1, padx=5, pady=5)
-
-#label para el campo de texto (contraseña)
-label = Label(ventana, text='Contraseña')
-label.grid(row=4, column=0, padx=5, pady=5)
-
-#campo de texto (contraseña)
-campoTexto = Entry(ventana)
-campoTexto.grid(row=4, column=1, padx=5, pady=5)
-
 #label para el campo de texto (edad)
 label = Label(ventana, text='Edad')
-label.grid(row=5, column=0, padx=5, pady=5)
+label.grid(row=3, column=0, padx=5, pady=5)
 
 #campo de texto (edad)
 campoTexto = Entry(ventana)
+campoTexto.grid(row=3, column=1, padx=5, pady=5)
+
+#label para el campo de texto (fecha de ingreso)
+label = Label(ventana, text='Fecha de ingreso')
+label.grid(row=4, column=0, padx=5, pady=5)
+
+#campo de texto (fecha de ingreso)
+campoTexto = Entry(ventana)
+campoTexto.grid(row=4, column=1, padx=5, pady=5)
+
+#label para el campo de texto (fecha de salida)
+label = Label(ventana, text='Fecha de salida')
+label.grid(row=5, column=0, padx=5, pady=5)
+
+#campo de texto (fecha de salida)
+campoTexto = Entry(ventana)
 campoTexto.grid(row=5, column=1, padx=5, pady=5)
+
 
 ventana.mainloop()
