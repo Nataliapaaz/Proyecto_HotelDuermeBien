@@ -170,23 +170,47 @@ def registrarReserva():
     fechaIngreso = input('Ingrese la fecha de ingreso: ')
     fechaSalida = input('Ingrese la fecha de salida: ')
     capacidad = validarNumero('la cantidad de huespedes: ')
-    #idUsuario = input('Ingrese el ID del usuario: ')
-    #idHuesped = input('Ingrese el ID del huésped: ')
-
-    reserva = Reserva(numeroReserva, fechaIngreso, fechaSalida, capacidad,)
-
+    idUsuario = int(input("Ingrese el id del usuario: ")) 
+    idHuesped = int(input("Ingrese el id del huesped: "))
     dao = DAO()
-    dao.registrarReserva(reserva)
+    datosHuesped = dao.obtenerIdHuesped()
+    datosUsuario = dao.obtenerIdUsuario()
+    print(datosHuesped)
+    
 
-    print('La reserva se registró correctamente:')
-    print(reserva)
+    for i in datosUsuario: 
+        while True: 
+            if idUsuario == i[0]:  
+                idUsuario = i[0]
+                print(idUsuario)
+                for x in datosHuesped:
+                    while True:
+                        
+                        if idHuesped == x[0]:
+                            idHuesped = x[0]
+                            print(idHuesped)
+                            reserva = Reserva(numeroReserva,fechaIngreso,fechaSalida,capacidad,idUsuario,idHuesped,)
+                            dao.registrarReserva(reserva)
+
+                            print('La reserva se registró correctamente:')
+                            break
+                        break
+                break
+            break
+        ##buscar manera de validar que si ingresa un valor que no existe en los datos lo vuelva a pedir
+            
+
+
+
+    
+
 
 def registrarHuesped():
     rut = input('Ingrese el rut del huésped: ')
     nombre = input('Ingrese el nombre del huésped: ')
     edad = validarNumero('la edad del huésped: ')
-    fechaIngreso = input('Ingrese la fecha de ingreso: ')
-    fechaSalida = input('Ingrese la fecha de salida: ')
+    fechaIngreso = input('Ingrese la fecha de ingreso (YYYY-MM-DD): ')
+    fechaSalida = input('Ingrese la fecha de salida (YYYY-MM-DD): ')
     #codigoHabitacion = input('Ingrese el código de la habitación: ')
 
     huesped = Huesped(rut, nombre, edad, fechaIngreso, fechaSalida,)
