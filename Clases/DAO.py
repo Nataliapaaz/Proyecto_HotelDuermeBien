@@ -49,8 +49,8 @@ class DAO():
     
     def registrarHabitacion(self, habitacion:Habitacion):
         self.inicio()
-        sql = "INSERT INTO habitacion (numero,orientacion,ocupacion,idReserva, idHabitacion, idHuesped) VALUES (%s,%s,%s,%s,%s,%s)"
-        values = (habitacion.getNumero(),habitacion.getOrientacion(),habitacion.getOcupacion(),habitacion.getIdReserva(),habitacion.getIdHabitacion(),habitacion.getIdHuesped())
+        sql = "INSERT INTO habitacion (numero,orientacion,ocupacion,idReserva_fk, idHabitacion_fk, idHuesped_fk) VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (habitacion.getNumero(),habitacion.getOrientacion(),habitacion.getOcupacion(),habitacion.getIdReserva(),habitacion.getIdHabitacion(),habitacion.getIdHuesped(),)
         self.__cursor.execute(sql,values)
         self.fin()
 
@@ -110,7 +110,7 @@ class DAO():
     
     def obtenerIdHabitacion(self):
         self.inicio()
-        sql = "SELECT * FROM habitacion"
+        sql = "SELECT * FROM tipohabitacion"
         self.__cursor.execute(sql)
         datos = self.__cursor.fetchall()
         self.fin()
