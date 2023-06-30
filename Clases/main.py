@@ -104,7 +104,7 @@ def registrarTipoUsuario(lista_tipos_usuario):
             
 
 def registrarHabitacion(lista_habitaciones):
-    codigoHabitacion = input('Ingrese el código de la habitación: ')
+
     numero = input('Ingrese el número de la habitación: ')
 
 # Validación de número de habitación repetido
@@ -115,34 +115,46 @@ def registrarHabitacion(lista_habitaciones):
 
     orientacion = input('Ingrese la orientación de la habitación: ')
     ocupacion = input('Ingrese la ocupación de la habitación: ')
-    idReserva = input('Ingrese el ID de la reserva asociada: ')
-    idHabitacion = input('Ingrese el ID de la habitación asociada: ')
-    idHuesped = input('Ingrese el ID del huésped asociado: ')
+    idReserva = int(input('Ingrese el ID de la reserva asociada: '))
+    idHabitacion = int(input('Ingrese el ID de la habitación asociada: '))
+    idHuesped = int(input('Ingrese el ID del huésped asociado: '))
 
-    huesped = Huesped(idHuesped)
-    tipoHabitacion = TipoHabitacion(idHabitacion)
-    reserva = Reserva(idReserva)
+    dao= DAO()
 
-# Validación de rut de huespde asignación a más de una habitación
-    for habitacion in lista_habitaciones:
-        if habitacion.getHuesped().getRut() == huesped.getRut():
-            print('Error: El pasajero ya está asignado a otra habitación.')
-            return
+    datosReserva = dao.obtenerIdReserva()
+    datosHabitacion= dao.obtenerIdHabitacion()
+    datosHuesped = dao.obtenerIdHuesped()
 
-    habitacion = Habitacion(numero, orientacion, ocupacion, reserva, tipoHabitacion, huesped)
+    print(datosReserva)
+    print(datosHabitacion)
+    print(datosHuesped)
 
-    dao = DAO()
-    dao.registrarHabitacion(habitacion)  # Lógica para almacenar la habitación en la base de datos o en la lista de habitaciones
+    for i in datosReserva:
+        while True:
+            if idReserva == i[0]:
+                idReserva = i[0]
+                print(idReserva)
+                for x in datosHabitacion:
+                    while True:    
+                        if idHabitacion == x[0]:
+                            idHabitacion = x[0]
+                            print(idHabitacion)
+                            for z in datosHuesped:
+                                while True:
+                                    if idHuesped == z[0]:
+                                        idHuesped = z[0]
+                                        print(idHuesped)
+                                        habitacion = Habitacion(numero, orientacion,ocupacion,idReserva,idHabitacion,idHuesped,)
+                                        dao.registrarHabitacion(habitacion)
+                                        break
+                                    break
+                            break
+                        break
+                break
+            break
+            ##buscar manera de validar que si ingresa un valor que no existe en los datos lo vuelva a pedir
 
     print('La habitación se registró correctamente:')
-    print(habitacion)
-    print('Huésped:')
-    print(huesped)
-    print('Tipo de Habitación:')
-    print(tipoHabitacion)
-    print('Reserva:')
-    print(reserva)
-
     
 def registrarTipoHabitacion(lista_tipos_habitacion):
     numeroCamas = validarNumero('el número de camas de la habitación: ')
