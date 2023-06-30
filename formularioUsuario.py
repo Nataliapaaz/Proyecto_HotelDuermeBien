@@ -64,7 +64,7 @@ usuario = StringVar()
 resultadoUsuario = StringVar()
 
 #campo de texto (usuario)
-campoTexto = Entry(ventana, textovariable=usuario)
+campoTexto = Entry(ventana, textvariable=usuario)
 campoTexto.grid(row=3, column=1, padx=5, pady=5)
 
 #label para el campo de texto (contraseña)
@@ -79,7 +79,7 @@ contrasena = StringVar()
 resultadoContrasena = StringVar()
 
 #campo de texto (contraseña)
-campoTexto = Entry(ventana, textovariable=contrasena)
+campoTexto = Entry(ventana, textvariable=contrasena)
 campoTexto.grid(row=4, column=1, padx=5, pady=5)
 
 #label para el campo de texto (edad)
@@ -94,15 +94,21 @@ edad = StringVar()
 resultadoEdad = StringVar()
 
 #campo de texto (edad)
-campoTexto = Entry(ventana, textovariable=edad)
+campoTexto = Entry(ventana, textvariable=edad)
 campoTexto.grid(row=5, column=1, padx=5, pady=5)
 
 boton = Button(ventana, text='Enviar')
 boton.grid(row=6, column=1)
 boton.config(padx=10, pady=10)
 
-boton = Button(ventana, text='Ver datos')
+#hacer que funcione mostrar los valores
+def mostrarDatos():
+    mostrarDatos = Label(ventana, textvariable=resultadoRut)
+    mostrarDatos.grid(row=8, column=0, padx=5, pady=5)
+
+boton = Button(ventana, text='Ver datos', command=mostrarDatos)
 boton.grid(row=7, column=1)
 boton.config(padx=10, pady=10)
+
 
 ventana.mainloop()
