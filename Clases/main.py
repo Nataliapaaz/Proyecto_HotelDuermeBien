@@ -32,39 +32,51 @@ def validarNumero(numero):
 
 
 def registrarUsuario():
+    dao = DAO()
     nombre = input('Ingrese nombre y apellido del usuario: ')
     usuario = input('Ingrese nombre de usuario: ')
     password = input('Ingrese su password: ')
-    rut = input('Ingrese rut del usuario: ')
-    edad = validarNumero('la edad del usuario: ')
-    #tipoUsuario = obtenerTipoUsuario(idTipoUsuario)
-
-    #if tipoUsuario is None:
-        #print('El tipo de usuario ingresado no existe.')
-        #return
-
-    dao = DAO()
-    datos = dao.obtenerTipos()
-    print(datos)
-    tipoUsuario = input("Ingrese si es encargado o administrador: ").lower()
-
-    while True:
-        for i in datos:
-            if tipoUsuario == ("encargado"):
-                tipoUsuario = i[0]
-                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
-                dao = DAO()
-                dao.registrarUsuario(usuario)
-                break
-            elif tipoUsuario== ("administrador"):
-                tipoUsuario = i[1]
-                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
-                dao = DAO()
-                dao.registrarUsuario(usuario)
-                break
+    rut_duplicado = True
+    while rut_duplicado:
+            rut = input('Ingrese rut del usuario: ')
+            # Validación de RUT duplicado
+            if dao.existeRutUsuario(rut):
+                print('Error: El RUT ingresado ya existe. Intente nuevamente.')
             else:
-                print("El id no fue encontrado, intente nuevamente: ")
-                tipoUsuario = input("Ingrese si es encargado o administrador: ").lower()
+                rut_duplicado = False
+
+    edad = validarNumero('la edad del usuario: ')
+
+    datos = dao.obtenerTipos()
+    #print(datos)
+    
+
+    for i in datos:
+        while True:  
+            tipoUsuario = int(input("Ingrese 4 si es encargado o 5 si es administrador: "))  
+            if tipoUsuario == i[0]:  
+                tipoUsuario = i[0]
+                #print(tipoUsuario)
+                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
+                dao = DAO()
+                dao.registrarUsuario(usuario)
+                break
+
+            elif tipoUsuario== i[0]:
+            
+                tipoUsuario = i[0]
+                #print(tipoUsuario)
+                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
+                dao = DAO()
+                dao.registrarUsuario(usuario)
+                break
+
+            else:
+                print("El id ingresado no existe, intente nuevamente")
+            break
+                
+                
+
 
 
 
