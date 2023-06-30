@@ -16,7 +16,7 @@ def validarNumero(numero):
             print('Debe ingresar un número válido.')
     return valor
 
-def obtenerTipoUsuario(idTipoUsuario):
+#def obtenerTipoUsuario(idTipoUsuario):
     tiposUsuario = [
         TipoUsuario("1", "Administrador"),
         TipoUsuario("2", "Encargado"),
@@ -43,31 +43,30 @@ def registrarUsuario():
         #print('El tipo de usuario ingresado no existe.')
         #return
 
+    dao = DAO()
+    datos = dao.obtenerTipos()
+    print(datos)
+    tipoUsuario = input("Ingrese si es encargado o administrador: ").lower()
 
-    dao =DAO()
-    obtenerId =dao.obtenerTipos()
-    
+    while True:
+        for i in datos:
+            if tipoUsuario == ("encargado"):
+                tipoUsuario = i[0]
+                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
+                dao = DAO()
+                dao.registrarUsuario(usuario)
+                break
+            elif tipoUsuario== ("administrador"):
+                tipoUsuario = i[1]
+                usuario = Usuario(rut,nombre, usuario, password, edad,tipoUsuario, )
+                dao = DAO()
+                dao.registrarUsuario(usuario)
+                break
+            else:
+                print("El id no fue encontrado, intente nuevamente: ")
+                tipoUsuario = input("Ingrese si es encargado o administrador: ").lower()
 
-    print(type(obtenerId))
-    idTipoUsuario = input("Ingrese si es encargado o admnistrador: ").lower()
 
-    for i in obtenerId:
-        if i[0]== "encargado":
-            idTipoUsuario = i[0]
-            usuario = Usuario(rut,nombre, usuario, password, edad,idTipoUsuario )
-            dao = DAO()
-            dao.registrarUsuario(usuario)
-            break
-        elif i[1]== "ädministrador":
-            idTipoUsuario = i[1]
-            usuario = Usuario(rut,nombre, usuario, password, edad,idTipoUsuario )
-            dao = DAO()
-            dao.registrarUsuario(usuario)
-            break
-        else:
-            print("El id no fue encontrado, intente nuevamente: ")
-
-    print('El usuario se registró correctamente:')
 
 
 
@@ -78,14 +77,13 @@ def registrarTipoUsuario(lista_tipos_usuario):
     
 # Validación de nombre de tipo de usuario repetido
         if nombreTipoUsuario == "encargado":
-            idTipoUsuario = 1
-            tipoUsuario = TipoUsuario(idTipoUsuario,nombreTipoUsuario )
+            tipoUsuario = TipoUsuario(nombreTipoUsuario, )
             dao = DAO()
             dao.registrarTipoUsuario(tipoUsuario)
             break
         elif nombreTipoUsuario == "administrador":
-            idTipoUsuario = 2
-            tipoUsuario = TipoUsuario(idTipoUsuario,nombreTipoUsuario)
+
+            tipoUsuario = TipoUsuario(nombreTipoUsuario,)
             dao = DAO()
             dao.registrarTipoUsuario(tipoUsuario)
             break

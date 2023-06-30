@@ -28,8 +28,8 @@ class DAO():
 
     def registrarTipoUsuario(self,tipoUsuario:TipoUsuario):
         self.inicio()
-        sql = "INSERT INTO tipoUsuario (idTipoUsuario,tipo) VALUES (%s,%s)"
-        values = (tipoUsuario.getIdTipoUsuario(),tipoUsuario.getTipo())
+        sql = "INSERT INTO tipoUsuario (tipo) VALUES (%s)"
+        values = (tipoUsuario.getTipo(),)
         self.__cursor.execute(sql,values)
         self.fin()
     
@@ -42,8 +42,8 @@ class DAO():
     
     def registrarUsuario(self, usuario:Usuario):
         self.inicio()
-        sql = "INSERT INTO usuario (rut, nombre, usuario, password, edad) VALUES (%s,%s,%s,%s,%s)"
-        values = (usuario.getRut(),usuario.getNombre(),usuario.getUsuario(),usuario.getPassword(),usuario.getEdad(),)
+        sql = "INSERT INTO usuario (rut, nombre, usuario, password, edad, idTipoUsuario_fk) VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (usuario.getRut(),usuario.getNombre(),usuario.getUsuario(),usuario.getPassword(),usuario.getEdad(),usuario.getIdTipoUsuario(),)
         self.__cursor.execute(sql,values)
         self.fin()
     
