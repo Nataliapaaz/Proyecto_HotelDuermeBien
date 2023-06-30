@@ -42,8 +42,8 @@ class DAO():
     
     def registrarUsuario(self, usuario:Usuario):
         self.inicio()
-        sql = "INSERT INTO usuario (rut, nombre, usuario, password, edad) VALUES (%s,%s,%s,%s,%s)"
-        values = (usuario.getRut(),usuario.getNombre(),usuario.getUsuario(),usuario.getPassword(),usuario.getEdad(),)
+        sql = "INSERT INTO usuario (rut, nombre, usuario, password, edad, idTipoUsuario_fk) VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (usuario.getRut(),usuario.getNombre(),usuario.getUsuario(),usuario.getPassword(),usuario.getEdad(),usuario.getIdTipoUsuario(),)
         self.__cursor.execute(sql,values)
         self.fin()
     
@@ -63,7 +63,56 @@ class DAO():
 
     def registrarReserva(self, reserva:Reserva):
         self.inicio()
-        sql = "INSERT INTO reserva (numeroReserva, fechaIngreso, fechaSalida, capacidad) VALUES (%s,%s,%s,%s)"
-        values = (reserva.getNumeroReserva(),reserva.getFechaIngreso(),reserva.getFechaSalida(),reserva.getCapacidad(),)
+        sql = "INSERT INTO reserva (numeroReserva, fechaIngreso, fechaSalida, capacidad, idUsuario_fk, idHuesped_fk) VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (reserva.getNumeroReserva(),reserva.getFechaIngreso(),reserva.getFechaSalida(),reserva.getCapacidad(),reserva.getIdUsuario(),reserva.getIdHuesped(),)
         self.__cursor.execute(sql,values)
         self.fin()
+
+    def obtenerTipos(self):
+        self.inicio()
+        sql = "SELECT * FROM tipousuario"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def existeRutUsuario(self, rut):
+        self.inicio()
+        sql = "SELECT COUNT(*) FROM usuario WHERE rut = %s"
+        self.__cursor.execute(sql,(rut,))
+        count = self.__cursor.fetchone()[0]
+        self.fin()
+        return count>0
+    
+    def obtenerIdUsuario(self):
+        self.inicio()
+        sql = "SELECT * FROM usuario"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def obtenerIdHuesped(self):
+        self.inicio()
+        sql = "SELECT * FROM huesped"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def obtenerIdReserva(self):
+        self.inicio()
+        sql = "SELECT * FROM reserva"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def obtenerIdHabitacion(self):
+        self.inicio()
+        sql = "SELECT * FROM habitacion"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    

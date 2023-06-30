@@ -1,5 +1,5 @@
 class TipoUsuario:
-    def __init__(self, tipo,idTipoUsuario = -1):
+    def __init__(self,tipo,idTipoUsuario = 0):
         
         self.__tipo = tipo
         self.__idTipoUsuario = idTipoUsuario
