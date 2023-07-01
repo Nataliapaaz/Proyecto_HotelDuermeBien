@@ -1,12 +1,12 @@
 class Reserva:
-    def __init__(self, numeroReserva, fechaIngreso, fechaSalida, capacidad,idReserva = -1):
+    def __init__(self, numeroReserva, fechaIngreso, fechaSalida, capacidad,idUsuario, idHuesped, idReserva = -1):
         self.__idReserva = idReserva
         self.__numeroReserva = numeroReserva
         self.__fechaIngreso = fechaIngreso
         self.__fechaSalida = fechaSalida
         self.__capacidad = capacidad
-        #self.__idUsuario = idUsuario
-        ##self.__idHuesped = idHuesped
+        self.__idUsuario = idUsuario
+        self.__idHuesped = idHuesped
     
     def getIdReserva(self):
         return self.__idReserva
@@ -38,26 +38,26 @@ class Reserva:
     def setCapacidad(self, capacidad):
         self.__capacidad = capacidad
     
-    #def getIdUsuario(self):
-    #    return self.__idUsuario
+    def getIdUsuario(self):
+        return self.__idUsuario
     
-    #def setIdUsuario(self, idUsuario):
-    #    self.__idUsuario = idUsuario
+    def setIdUsuario(self, idUsuario):
+        self.__idUsuario = idUsuario
     
-    #def getIdHuesped(self):
-    #    return self.__idHuesped
+    def getIdHuesped(self):
+        return self.__idHuesped
     
-    #def setIdHuesped(self, idHuesped):
-    #    self.__idHuesped = idHuesped
+    def setIdHuesped(self, idHuesped):
+        self.__idHuesped = idHuesped
     
     def __str__(self):
         cadena = ""
-        #cadena += f"ID Reserva: {self.__idReserva}\n"
+        cadena += f"ID Reserva: {self.__idReserva}\n"
         cadena += f"Número de Reserva: {self.__numeroReserva}\n"
         cadena += f"Fecha de Ingreso: {self.__fechaIngreso}\n"
         cadena += f"Fecha de Salida: {self.__fechaSalida}\n"
         cadena += f"Huespedes Asociados: {self.__capacidad}\n"
-        #cadena += f"ID Usuario: {self.__idUsuario}\n"
-        #cadena += f"ID Huésped: {self.__idHuesped}\n"
+        cadena += f"ID Usuario: {self.__idUsuario}\n"
+        cadena += f"ID Huésped: {self.__idHuesped}\n"
         return cadena
 

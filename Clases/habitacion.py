@@ -1,5 +1,5 @@
 class Habitacion:
-    def __init__(self, numero, orientacion, ocupacion, idReserva, idHabitacion, idHuesped, codigoHabitacion =-1):
+    def __init__(self, numero, orientacion, ocupacion,encargadoHabitacion, idReserva, idHabitacion, idHuesped, codigoHabitacion =-1):
 
         self.__numero = numero
         self.__orientacion = orientacion
@@ -8,6 +8,7 @@ class Habitacion:
         self.__idHabitacion = idHabitacion
         self.__idHuesped = idHuesped
         self.__codigoHabitacion = codigoHabitacion
+        self.__encargadoHabitacion = encargadoHabitacion
     
     def getCodigoHabitacion(self):
         return self.__codigoHabitacion
@@ -50,6 +51,12 @@ class Habitacion:
     
     def setIdHuesped(self, idHuesped):
         self.__idHuesped = idHuesped
+
+    def getEncargadoHabitacion(self):
+        return self.__encargadoHabitacion
+    
+    def setEncargadoHabitacion(self, encargadoHabitacion):
+        self.__encargadoHabitacion = encargadoHabitacion
     
     def __str__(self):
         cadena = ""
