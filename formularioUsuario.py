@@ -1,8 +1,7 @@
 from tkinter import *
-from tkinter import messagebox
 
 ventana = Tk()
-ventana.geometry('500x500')
+ventana.geometry('400x600')
 
 ventana.title('Formulario de usuario')
 ventana.iconbitmap('images/logo.ico')
@@ -63,7 +62,7 @@ label.grid(row=5, column=0, padx=5, pady=5)
 campoEdad = Entry(ventana)
 campoEdad.grid(row=5, column=1, padx=5, pady=5)
 
-#funcion para obtener los datos del usuario
+#funcion para crear una lista con los datos del usuario
 def obtenerDatosUsuario():
     datosUsuario = []
     datosUsuario.append(campoRut.get())
@@ -74,13 +73,23 @@ def obtenerDatosUsuario():
     label = Label(ventana, text=datosUsuario)
     label.grid(row=8, column=1, padx=5, pady=5)
 
-#Este boton deberia poder mandar los datos del usuario a la base de datos
+#Creacion de list box para mostrar los datos
+def crearListBox():
+    listbox = Listbox(ventana)
+    listbox.insert(0, campoRut.get(), campoNombre.get(), campoUsuario.get(), campoContrasena.get(), campoEdad.get())
+    listbox.grid(row=9, column=1, padx=5, pady=5)
+
+#Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos
 boton = Button(ventana, text='Enviar')
 boton.grid(row=6, column=1)
 boton.config(padx=10, pady=10)
 
+# boton = Button(ventana, text='Ver datos', command=obtenerDatosUsuario)
+# boton.grid(row=7, column=1)
+# boton.config(padx=10, pady=10)
+
 #Boton para mostrar todos los datos que se ingresaron
-boton = Button(ventana, text='Ver datos', command=obtenerDatosUsuario)
+boton = Button(ventana, text='Ver datos', command=crearListBox)
 boton.grid(row=7, column=1)
 boton.config(padx=10, pady=10)
 
