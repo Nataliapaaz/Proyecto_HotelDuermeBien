@@ -16,20 +16,6 @@ def validarNumero(numero):
             print('Debe ingresar un número válido.')
     return valor
 
-#def obtenerTipoUsuario(idTipoUsuario):
-    tiposUsuario = [
-        TipoUsuario("1", "Administrador"),
-        TipoUsuario("2", "Encargado"),
-        TipoUsuario("3", "Invitado")
-    ]
-
-    for tipoUsuario in tiposUsuario:
-        if tipoUsuario.getIdTipoUsuario() == idTipoUsuario:
-            return tipoUsuario
-
-    return None
-
-
 
 def registrarUsuario():
     dao = DAO()
@@ -48,12 +34,11 @@ def registrarUsuario():
     edad = validarNumero('la edad del usuario: ')
 
     datos = dao.obtenerTipos()
-    #print(datos)
-    
+    print(datos)
+    tipoUsuario = int(input("Ingrese 4 si es encargado o 5 si es administrador: "))
 
     for i in datos:
-        while True:  
-            tipoUsuario = int(input("Ingrese 4 si es encargado o 5 si es administrador: "))  
+        while True:    
             if tipoUsuario == i[0]:  
                 tipoUsuario = i[0]
                 #print(tipoUsuario)
@@ -70,9 +55,7 @@ def registrarUsuario():
                 dao = DAO()
                 dao.registrarUsuario(usuario)
                 break
-
-            else:
-                print("El id ingresado no existe, intente nuevamente")
+            #Validacion id no existe
             break
                 
                 
@@ -105,28 +88,33 @@ def registrarTipoUsuario(lista_tipos_usuario):
 
 def registrarHabitacion(lista_habitaciones):
 
-    numero = input('Ingrese el número de la habitación: ')
-
-# Validación de número de habitación repetido
-    for habitacion in lista_habitaciones:
-        if habitacion.getNumero() == numero:
-            print('Error: El número de habitación ya existe.')
-            return
-
-    orientacion = input('Ingrese la orientación de la habitación: ')
-    ocupacion = input('Ingrese la ocupación de la habitación: ')
-    idReserva = int(input('Ingrese el ID de la reserva asociada: '))
-    idHabitacion = int(input('Ingrese el ID de la habitación asociada: '))
-    idHuesped = int(input('Ingrese el ID del huésped asociado: '))
-
     dao= DAO()
 
     datosReserva = dao.obtenerIdReserva()
-    datosHabitacion= dao.obtenerIdHabitacion()
+    datosTipoHabitacion= dao.obtenerIdTipoHabitacion()
     datosHuesped = dao.obtenerIdHuesped()
 
+    numero = input('Ingrese el número de la habitación: ')
+
+
+    orientacion = input('Ingrese la orientación de la habitación: ')
+    ocupacion = input('Ingrese la ocupación de la habitación: ')
+    respuesta= input("¿El cliente es encargado?(SI o NO)").lower()
+    if respuesta =="si":
+        idEncargado="si"
+    else:
+        idEncargado = "no"
+    
     print(datosReserva)
-    print(datosHabitacion)
+    idReserva = int(input('Ingrese el ID de la reserva asociada: '))
+    print(datosTipoHabitacion)
+    idHabitacion = int(input('Ingrese el ID de la habitación asociada: '))
+    print(datosHuesped)
+    idHuesped = int(input('Ingrese el ID del huésped asociado: '))
+
+
+    print(datosReserva)
+    print(datosTipoHabitacion)
     print(datosHuesped)
 
     for i in datosReserva:
@@ -134,7 +122,7 @@ def registrarHabitacion(lista_habitaciones):
             if idReserva == i[0]:
                 idReserva = i[0]
                 print(idReserva)
-                for x in datosHabitacion:
+                for x in datosTipoHabitacion:
                     while True:    
                         if idHabitacion == x[0]:
                             idHabitacion = x[0]
@@ -144,7 +132,7 @@ def registrarHabitacion(lista_habitaciones):
                                     if idHuesped == z[0]:
                                         idHuesped = z[0]
                                         print(idHuesped)
-                                        habitacion = Habitacion(numero, orientacion,ocupacion,idReserva,idHabitacion,idHuesped,)
+                                        habitacion = Habitacion(numero, orientacion,ocupacion,idEncargado,idReserva,idHabitacion,idHuesped,)
                                         dao.registrarHabitacion(habitacion)
                                         break
                                     break
@@ -177,17 +165,18 @@ def registrarTipoHabitacion(lista_tipos_habitacion):
 
 
 def registrarReserva():
-    
+    dao = DAO()
+    datosHuesped = dao.obtenerIdHuesped()
+    datosUsuario = dao.obtenerIdUsuario()
     numeroReserva = input('Ingrese el número de reserva: ')
     fechaIngreso = input('Ingrese la fecha de ingreso: ')
     fechaSalida = input('Ingrese la fecha de salida: ')
     capacidad = validarNumero('la cantidad de huespedes: ')
+    print(datosUsuario)
     idUsuario = int(input("Ingrese el id del usuario: ")) 
-    idHuesped = int(input("Ingrese el id del huesped: "))
-    dao = DAO()
-    datosHuesped = dao.obtenerIdHuesped()
-    datosUsuario = dao.obtenerIdUsuario()
     print(datosHuesped)
+    idHuesped = int(input("Ingrese el id del huesped: "))
+
     
 
     for i in datosUsuario: 
@@ -218,20 +207,28 @@ def registrarReserva():
 
 
 def registrarHuesped():
+    dao = DAO() 
+    datosHabitacion = dao.obtenerIdHabitacion()
     rut = input('Ingrese el rut del huésped: ')
     nombre = input('Ingrese el nombre del huésped: ')
     edad = validarNumero('la edad del huésped: ')
     fechaIngreso = input('Ingrese la fecha de ingreso (YYYY-MM-DD): ')
     fechaSalida = input('Ingrese la fecha de salida (YYYY-MM-DD): ')
-    #codigoHabitacion = input('Ingrese el código de la habitación: ')
+    print(datosHabitacion)
+    codigoHabitacion = int(input('Ingrese el código de la habitación: '))
 
-    huesped = Huesped(rut, nombre, edad, fechaIngreso, fechaSalida,)
 
-    dao = DAO()
-    dao.registrarHuesped(huesped)
-
+    for i in datosHabitacion:
+        while True:
+            if codigoHabitacion == i[0]:
+                codigoHabitacion = i[0]
+                huesped = Huesped(rut,nombre,edad,fechaIngreso,fechaSalida,codigoHabitacion,)
+                dao.registrarHuesped(huesped)
+                break
+            break
+    
     print('El huésped se registró correctamente:')
-    print(huesped)
+
 
 lista_habitaciones = []
 lista_tipos_habitacion = []
