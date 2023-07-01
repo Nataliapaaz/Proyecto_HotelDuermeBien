@@ -4,7 +4,7 @@ import os.path
 class Ventana:
     def __init__(self):
         self.titulo = 'Hotel Duerme Bien App'
-        self.icon = './images/hotel-logo.ico'
+        self.icon = './images/logo.ico'
         self.size = '750x550'
         self.resizable = False
 
@@ -21,7 +21,7 @@ class Ventana:
             ventana.resizable(0, 0)
         rutaIcono = os.path.abspath(self.icon)
         if not os.path.isfile(rutaIcono):
-            rutaIcono = os.path.abspath('./Tkinter/images/hotel-logo.ico')
+            rutaIcono = os.path.abspath('./Tkinter/images/logo.ico')
         else:
             ventana.iconbitmap('hotel-logo.ico')
 
