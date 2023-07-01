@@ -49,15 +49,15 @@ class DAO():
     
     def registrarHabitacion(self, habitacion:Habitacion):
         self.inicio()
-        sql = "INSERT INTO habitacion (numero,orientacion,ocupacion,idReserva_fk, idHabitacion_fk, idHuesped_fk) VALUES (%s,%s,%s,%s,%s,%s)"
-        values = (habitacion.getNumero(),habitacion.getOrientacion(),habitacion.getOcupacion(),habitacion.getIdReserva(),habitacion.getIdHabitacion(),habitacion.getIdHuesped(),)
+        sql = "INSERT INTO habitacion (numero,orientacion,ocupacion,encargadoHabitacion,idReserva_fk, idHabitacion_fk, idHuesped_fk) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+        values = (habitacion.getNumero(),habitacion.getOrientacion(),habitacion.getOcupacion(),habitacion.getEncargadoHabitacion(),habitacion.getIdReserva(),habitacion.getIdHabitacion(),habitacion.getIdHuesped(),)
         self.__cursor.execute(sql,values)
         self.fin()
 
     def registrarHuesped(self, huesped:Huesped):
         self.inicio()
-        sql = "INSERT INTO huesped (rut, nombre, edad, fechaIngreso, fechaSalida) VALUES (%s,%s,%s,%s,%s)"
-        values = (huesped.getRut(),huesped.getNombre(),huesped.getEdad(),huesped.getFechaIngreso(),huesped.getFechaSalida(),)
+        sql = "INSERT INTO huesped (rut, nombre, edad, fechaIngreso, fechaSalida, codigoHabitacion_fk) VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (huesped.getRut(),huesped.getNombre(),huesped.getEdad(),huesped.getFechaIngreso(),huesped.getFechaSalida(),huesped.getCodigoHabitacion(),)
         self.__cursor.execute(sql,values)
         self.fin()
 
@@ -108,11 +108,20 @@ class DAO():
         self.fin()
         return datos
     
-    def obtenerIdHabitacion(self):
+    def obtenerIdTipoHabitacion(self):
         self.inicio()
         sql = "SELECT * FROM tipohabitacion"
         self.__cursor.execute(sql)
         datos = self.__cursor.fetchall()
         self.fin()
         return datos
+    
+    def obtenerIdHabitacion(self):
+        self.inicio()
+        sql = "SELECT * FROM habitacion"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
     
