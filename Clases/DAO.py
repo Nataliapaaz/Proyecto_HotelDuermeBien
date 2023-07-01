@@ -76,6 +76,15 @@ class DAO():
         self.fin()
         return datos
     
+
+    def existeRutUsuario(self, rut):
+        self.inicio()
+        sql = "SELECT COUNT(*) FROM usuario WHERE rut = %s"
+        self.__cursor.execute(sql,(rut,))
+        count = self.__cursor.fetchone()[0]
+        self.fin()
+        return count>0
+
     def obtenerIdUsuario(self):
         self.inicio()
         sql = "SELECT * FROM usuario"
