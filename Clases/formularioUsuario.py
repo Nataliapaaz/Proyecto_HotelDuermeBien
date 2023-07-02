@@ -48,14 +48,13 @@ def registrarUsuario():
     global password
     password = Entry(ventana)
     password.grid(row=4, column=1, padx=5, pady=5)
-
+    global rut
     rut_duplicado = True
     while rut_duplicado:
         #label para el campo de texto (RUT)
         label = Label(ventana, text='RUT')
         label.grid(row=1, column=0, padx=5, pady=5)
         #campo de texto (RUT)
-        global rut
         rut = Entry(ventana)
         rut.grid(row=1, column=1, padx=5, pady=5)
 
@@ -82,7 +81,7 @@ def registrarUsuario():
             tipoUsuarioValido = True
             break
     if tipoUsuarioValido:
-        usuario = Usuario(rut, nombre, usuario, password, edad, tipoUsuario)
+        usuario = Usuario(rut.get(), nombre.get(), usuario.get(), password.get(), edad.get(), tipoUsuario.get())
         dao = DAO()
         dao.registrarUsuario(usuario)
         print("Usuario ingresado correctamente")
@@ -140,14 +139,14 @@ def registrarUsuario():
 
 #funcion para crear una lista con los datos del usuario
 
-datosUsuario = []
-datosUsuario.append(rut.get())
-datosUsuario.append(nombre.get())
-datosUsuario.append(usuario.get())
-datosUsuario.append(password.get())
-datosUsuario.append(edad.get())
-label = Label(ventana, text=datosUsuario)
-label.grid(row=8, column=1, padx=5, pady=5)
+# datosUsuario = []
+# datosUsuario.append(rut.get())
+# datosUsuario.append(nombre.get())
+# datosUsuario.append(usuario.get())
+# datosUsuario.append(password.get())
+# datosUsuario.append(edad.get())
+# label = Label(ventana, text=datosUsuario)
+# label.grid(row=8, column=1, padx=5, pady=5)
 
 #Creacion de list box para mostrar los datos
 def crearListBox():
@@ -156,7 +155,7 @@ def crearListBox():
     listbox.grid(row=9, column=1, padx=5, pady=5)
 
 #Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos
-boton = Button(ventana, text='registrarUsuario')
+boton = Button(ventana, text='Registrar usuario', command=registrarUsuario)
 boton.grid(row=6, column=1)
 boton.config(padx=10, pady=10)
 
