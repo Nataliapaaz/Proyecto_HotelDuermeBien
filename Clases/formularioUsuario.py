@@ -1,9 +1,10 @@
 from tkinter import *
 from usuario import Usuario
 from DAO import DAO
+from tkinter import messagebox
 
 ventana = Tk()
-ventana.geometry('400x600')
+ventana.geometry('600x800')
 
 ventana.title('Formulario de usuario')
 ventana.iconbitmap('images/logo.ico')
@@ -63,51 +64,75 @@ label.grid(row=5, column=0, padx=5, pady=5)
 edad = Entry(ventana)
 edad.grid(row=5, column=1, padx=5, pady=5)
 
+#label para el campo de texto (id tipo de usuario)
+label = Label(ventana, text='Id tipo de usuario')
+label.grid(row=6, column=0, padx=5, pady=5)
+
+#campo de texto (contraseña)
+global idTipoUsuario
+idTipoUsuario = Entry(ventana)
+idTipoUsuario.grid(row=6, column=1, padx=5, pady=5)
+
+
 def validarNumero(numero):
     while True:
         try:
             valor = int(input(f'Ingrese {numero}: '))
             break
         except ValueError:
-            print('Debe ingresar un número válido.')
+            messagebox.showinfo(message="La edad no es valida", title="Error")
     return valor
 
 def registrarUsuario():
     dao = DAO()
     rut_duplicado = True
+    edadValida = validarNumero(int(edad.get()))
     while rut_duplicado:
         # Validación de RUT duplicado
         if dao.existeRutUsuario(rut.get()):
             print('Error: El RUT ingresado ya existe. Intente nuevamente.')
         else:
             rut_duplicado = False
-    #label para el campo de texto (edad)
-    label = Label(ventana, text='Edad')
-    label.grid(row=5, column=0, padx=5, pady=5)
-    #campo de texto (edad)
-    global edad
-    edad = Entry(ventana)
-    edad.grid(row=5, column=1, padx=5, pady=5)
     datos = dao.obtenerTipos()
     print(datos)
-    tipoUsuario = validarNumero("Ingrese numero correspondiente al tipo de usuario: ")
+    #tipoUsuario = validarNumero("Ingrese numero correspondiente al tipo de usuario: ")
     #Validacion tipo de usuario valido
     tipoUsuarioValido = False
+    tipoUsuario=int(idTipoUsuario.get())
     for i in datos:
+
         if tipoUsuario == i[0]:
             tipoUsuario = i[0]
             tipoUsuarioValido = True
             break
-    if tipoUsuarioValido:
-        usuario = Usuario(rut.get(), nombre.get(), usuario.get(), password.get(), edad.get(), tipoUsuario.get())
+    if tipoUsuarioValido == True:
+        global usuario
+        usuario = Usuario(rut.get(), nombre.get(), usuario.get(), password.get(), edadValida, tipoUsuario,)
         dao = DAO()
         dao.registrarUsuario(usuario)
-        print("Usuario ingresado correctamente")
+        label = Label(ventana, text='Usuario ingresado correctamente')
+        label.config(
+        fg='white',
+        bg='darkblue',
+        font=('Century Gothic', 16),
+        padx=20,
+        pady=20)
+        label.grid(row=14,  column=1, padx=5, pady=5)
     else:
         print("Error: El tipo de usuario ingresado no es válido.") 
 
 
 #funcion para crear una lista con los datos del usuario
+def mostrarTipoUsuario():
+    label = Label(ventana, text='Ingrese el numero 1 para Encargado')
+    label.grid(row=12, column=1, padx=5, pady=5)
+    label2 = Label(ventana, text='Ingrese el numero 2 para Administrador')
+    label2.grid(row=13, column=1, padx=5, pady=5)
+
+boton = Button(ventana, text='Mostrar tipos de usuario', command=mostrarTipoUsuario)
+boton.grid(row=11, column=1)
+boton.config(padx=10, pady=10)
+
 def obtenerDatosUsuario():
     datosUsuario = []
     datosUsuario.append(rut.get())
@@ -126,7 +151,7 @@ def crearListBox():
 
 #Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos
 boton = Button(ventana, text='Registrar usuario', command=registrarUsuario)
-boton.grid(row=6, column=1)
+boton.grid(row=7, column=1)
 boton.config(padx=10, pady=10)
 
 # boton = Button(ventana, text='Ver datos', command=obtenerDatosUsuario)
@@ -135,7 +160,7 @@ boton.config(padx=10, pady=10)
 
 #Boton para mostrar todos los datos que se ingresaron
 boton = Button(ventana, text='Ver datos', command=crearListBox)
-boton.grid(row=7, column=1)
+boton.grid(row=8, column=1)
 boton.config(padx=10, pady=10)
 
 #Esto hace que se ejecute la ventana
