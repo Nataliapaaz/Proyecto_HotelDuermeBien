@@ -43,14 +43,14 @@ marco = Frame(ventana, width=250, height=50)
 marco.config(bg='lightblue')
 marco.grid(row=6)
 
-textoPie = Label(marco, text='Todos los derechos reservados')
-textoPie.config(
-            bg='lightblue',
-            font=('Century Gothic', 11),
-            height=10,
-            width=30,
-            anchor=CENTER)
-textoPie.grid(row=6, column=1, columnspan=3, sticky=S)
+# textoPie = Label(marco, text='Todos los derechos reservados')
+# textoPie.config(
+#             bg='lightblue',
+#             font=('Century Gothic', 11),
+#             height=10,
+#             width=30,
+#             anchor=CENTER)
+# textoPie.grid(row=6, column=1, columnspan=3, sticky=S)
 
 #Esto hace que se ejecute la ventana
 ventana.mainloop()

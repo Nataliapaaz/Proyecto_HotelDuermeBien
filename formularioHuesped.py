@@ -12,7 +12,7 @@ encabezado.config(
     font=('Century Gothic', 18),
     padx=20,
     pady=20)
-encabezado.grid(row=0, column=0, columnspan=12, sticky=W)
+encabezado.grid(row=0, column=0, columnspan=2, sticky=W)
 
 # ---- R U T -----
 #label para el campo de texto (RUT)
