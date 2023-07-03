@@ -42,7 +42,7 @@ campoContrasena = Entry(ventana)
 campoContrasena.grid(row=4, column=1, padx=5, pady=5)
 
 #Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos
-boton = Button(ventana, text='Enviar', command = cerrarVentana)
+boton = Button(ventana, text='Iniciar sesion', command = cerrarVentana)
 boton.grid(row=5, column=1)
 boton.config(padx=10, pady=10)
 

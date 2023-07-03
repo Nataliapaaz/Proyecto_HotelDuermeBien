@@ -8,8 +8,6 @@ from huesped import Huesped
 from reserva import Reserva
 
 
-
-
 class DAO():
     def __init__(self):
         self.__conexion = None

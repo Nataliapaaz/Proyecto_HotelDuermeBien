@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import messagebox
 from DAO import DAO
 from habitacion import Habitacion
 
@@ -172,26 +171,25 @@ def formulario_habitaciones():
         dao= DAO()         
         datosHuesped = dao.idHuespedes()
         label = Label(ventana, text=datosHuesped)
-        label.grid(row=12, column=1, padx=5, pady=5)
+        label.grid(row=12, column=2, padx=5, pady=5)
 
     def mostrarTipoHabitacion():
         dao = DAO()
         datosHabitacion = dao.idTipoHabitacion()
         label = Label(ventana, text = datosHabitacion)
-        label.grid(row = 12, column=2,padx=5, pady=5)
+        label.grid(row = 12, column=1,padx=5, pady=5)
 
     boton = Button(ventana, text='Mostrar id de reserva', command=mostrarTipoReserva)
     boton.grid(row=11, column=0)
     boton.config(padx=10, pady=10)
 
     boton = Button(ventana, text='Mostrar id del tipo de habitacion', command=mostrarTipoHabitacion)
-    boton.grid(row=11, column=2)
-    boton.config(padx=10, pady=10)
-
-    boton = Button(ventana, text='Mostrar id de huesped', command=mostrarTipoHuesped)
     boton.grid(row=11, column=1)
     boton.config(padx=10, pady=10)
 
+    boton = Button(ventana, text='Mostrar id de huesped', command=mostrarTipoHuesped)
+    boton.grid(row=11, column=2)
+    boton.config(padx=10, pady=10)
 
     #Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos
     boton = Button(ventana, text='Enviar', command=registrarHabitacion)
