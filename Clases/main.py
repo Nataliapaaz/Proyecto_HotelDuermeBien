@@ -70,7 +70,6 @@ def registrarTipoUsuario(lista_tipos_usuario):
     while True:    
         nombreTipoUsuario = input('Ingrese si es Encargado o Administrador: ').lower()
     
-# Validación de nombre de tipo de usuario repetido
         if nombreTipoUsuario == "encargado":
             tipoUsuario = TipoUsuario(nombreTipoUsuario, )
             dao = DAO()
