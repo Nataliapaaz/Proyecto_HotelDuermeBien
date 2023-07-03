@@ -1,9 +1,10 @@
 from tkinter import *
 from huesped import Huesped
 from DAO import DAO
+from tkinter import messagebox
 
 ventana = Tk()
-ventana.geometry('800x700')
+ventana.geometry('600x800')
 
 ventana.title('Formulario de huesped')
 
@@ -45,7 +46,7 @@ edad.grid(row=3, column=1, padx=5, pady=5)
 
 # ---- FECHA DE INGRESO -----
 #label para el campo de texto (fecha de ingreso)
-label = Label(ventana, text='Fecha de ingreso (YYYY-MM-DD)')
+label = Label(ventana, text='Fecha de ingreso')
 label.grid(row=4, column=0, padx=5, pady=5)
 
 #campo de texto (fecha de ingreso)
@@ -54,7 +55,7 @@ fechaIngreso.grid(row=4, column=1, padx=5, pady=5)
 
 # ---- FECHA DE SALIDA -----
 #label para el campo de texto (fecha de salida)
-label = Label(ventana, text='Fecha de salida (YYYY-MM-DD)')
+label = Label(ventana, text='Fecha de salida')
 label.grid(row=5, column=0, padx=5, pady=5)
 
 #campo de texto (fecha de salida)
@@ -93,7 +94,7 @@ def registrarHuesped():
                 dao.registrarHuesped(huesped)
                 break
             break
-    label = Label(ventana, text='Usuario ingresado correctamente')
+    label = Label(ventana, text='Huesped ingresado correctamente')
     label.config(
         fg='white',
         bg='darkblue',
@@ -101,6 +102,17 @@ def registrarHuesped():
         padx=20,
         pady=20)
     label.grid(row=9,  column=1, padx=5, pady=5)
+
+
+def mostrarHabitacion():
+    dao= DAO()         
+    datosHabitacion = dao.idHabitacion()
+    label = Label(ventana, text=datosHabitacion)
+    label.grid(row=12, column=1, padx=5, pady=5)
+
+boton = Button(ventana, text='Mostrar id de habitacion', command=mostrarHabitacion)
+boton.grid(row=11, column=1)
+boton.config(padx=10, pady=10)
 
 #funcion para crear una lista con los datos del huesped
 def obtenerDatosHuesped():

@@ -1,14 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 from DAO import DAO
-from tipohabitacion import TipoHabitacion
 from habitacion import Habitacion
-from usuario import Usuario
-from reserva import Reserva
-from huesped import Huesped
 
 ventana = Tk()
-ventana.geometry('400x600')
+ventana.geometry('600x800')
 
 ventana.title('Cargar habitaciones')
 
@@ -161,7 +157,45 @@ def registrarHabitacion():
 
     habitacion = Habitacion(numero.get(), orientacion.get(), ocupacion.get(), encargadoHabitacion.get(), idReservaVal, idHabitacionVal, idHuespedVal,)
     dao.registrarHabitacion(habitacion)
-    print('La habitación se registró correctamente.')
+    label = Label(ventana, text='Habitacion ingresada correctamente')
+    label.config(
+        fg='white',
+        bg='darkblue',
+        font=('Century Gothic', 16),
+        padx=20,
+        pady=20)
+    label.grid(row=14,  column=1, padx=5, pady=5)
+
+
+def mostrarTipoReserva():
+    dao= DAO()
+    datosReserva= dao.idReserva()         
+    label = Label(ventana, text=datosReserva)
+    label.grid(row=12, column=0, padx=5, pady=5)
+
+def mostrarTipoHuesped():
+    dao= DAO()         
+    datosHuesped = dao.idHuespedes()
+    label = Label(ventana, text=datosHuesped)
+    label.grid(row=12, column=1, padx=5, pady=5)
+
+def mostrarTipoHabitacion():
+    dao = DAO()
+    datosHabitacion = dao.idTipoHabitacion()
+    label = Label(ventana, text = datosHabitacion)
+    label.grid(row = 12, column=2,padx=5, pady=5)
+
+boton = Button(ventana, text='Mostrar id de reserva', command=mostrarTipoReserva)
+boton.grid(row=11, column=0)
+boton.config(padx=10, pady=10)
+
+boton = Button(ventana, text='Mostrar id de huesped', command=mostrarTipoHuesped)
+boton.grid(row=11, column=1)
+boton.config(padx=10, pady=10)
+
+boton = Button(ventana, text='Mostrar id del tipo de habitacion', command=mostrarTipoHabitacion)
+boton.grid(row=11, column=2)
+boton.config(padx=10, pady=10)
 
 
 #Este boton ENVIAR, deberia poder mandar los datos del usuario a la base de datos

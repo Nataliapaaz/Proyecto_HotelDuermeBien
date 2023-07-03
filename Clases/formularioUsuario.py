@@ -86,7 +86,7 @@ def validarNumero(numero):
 def registrarUsuario():
     dao = DAO()
     rut_duplicado = True
-    edadValida = validarNumero(int(edad.get()))
+    edadValida = (int(edad.get()))
     while rut_duplicado:
         # Validación de RUT duplicado
         if dao.existeRutUsuario(rut.get()):
@@ -112,11 +112,11 @@ def registrarUsuario():
         dao.registrarUsuario(usuario)
         label = Label(ventana, text='Usuario ingresado correctamente')
         label.config(
-        fg='white',
-        bg='darkblue',
-        font=('Century Gothic', 16),
-        padx=20,
-        pady=20)
+            fg='white',
+            bg='darkblue',
+            font=('Century Gothic', 16),
+            padx=20,
+            pady=20)
         label.grid(row=14,  column=1, padx=5, pady=5)
     else:
         print("Error: El tipo de usuario ingresado no es válido.") 
@@ -124,9 +124,9 @@ def registrarUsuario():
 
 #funcion para crear una lista con los datos del usuario
 def mostrarTipoUsuario():
-    label = Label(ventana, text='Ingrese el numero 1 para Encargado')
+    label = Label(ventana, text='Ingrese el numero 4 para Encargado')
     label.grid(row=12, column=1, padx=5, pady=5)
-    label2 = Label(ventana, text='Ingrese el numero 2 para Administrador')
+    label2 = Label(ventana, text='Ingrese el numero 5 para Administrador')
     label2.grid(row=13, column=1, padx=5, pady=5)
 
 boton = Button(ventana, text='Mostrar tipos de usuario', command=mostrarTipoUsuario)
