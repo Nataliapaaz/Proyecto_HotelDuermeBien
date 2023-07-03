@@ -7,9 +7,9 @@ def formulario_huesped():
     ventana = Tk()
     ventana.geometry('600x800')
 
-    ventana.title('Formulario de huesped')
+    ventana.title('Registro de huesped')
 
-    encabezado = Label(ventana, text='Formulario de Huesped')
+    encabezado = Label(ventana, text='Registro de Huesped')
     encabezado.config(
         fg='white',
         bg='darkblue',

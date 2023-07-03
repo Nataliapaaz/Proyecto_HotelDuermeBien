@@ -27,19 +27,19 @@ def menu():
 
 
 
-    boton = Button(ventana, text='Formulario de Usuario' , command = formulario_usuario)
+    boton = Button(ventana, text='Registro de Usuario' , command = formulario_usuario)
     boton.grid(row=3, column=1)
     boton.config(padx=15, pady=15, font=('Century Gothic', 16))
 
-    boton = Button(ventana, text='Formulario de Huesped' , command = formulario_huesped)
+    boton = Button(ventana, text='Registro de Huesped' , command = formulario_huesped)
     boton.grid(row=4, column=1)
     boton.config(padx=15, pady=15, font=('Century Gothic', 16))
 
-    boton = Button(ventana, text='Formulario de Habitacion' , command= formulario_habitaciones)
+    boton = Button(ventana, text='Cargar Habitacion' , command= formulario_habitaciones)
     boton.grid(row=5, column=1)
     boton.config(padx=15, pady=15, font=('Century Gothic', 16))
 
-    boton = Button(ventana, text='Formulario de Reserva' , command = formulario_reserva)
+    boton = Button(ventana, text='Registro de Reserva' , command = formulario_reserva)
     boton.grid(row=6, column=1)
     boton.config(padx=15, pady=15, font=('Century Gothic', 16))
 

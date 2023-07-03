@@ -7,9 +7,9 @@ def formulario_reserva():
     ventana = Tk()
     ventana.geometry('600x800')
 
-    ventana.title('Formulario de reserva')
+    ventana.title('Registro de reserva')
 
-    encabezado = Label(ventana, text='Formulario de Reserva')
+    encabezado = Label(ventana, text='Registro de Reserva')
     encabezado.config(
         fg='white',
         bg='darkblue',

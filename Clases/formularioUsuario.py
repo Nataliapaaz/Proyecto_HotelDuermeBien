@@ -8,10 +8,10 @@ def formulario_usuario():
     ventana = Tk()
     ventana.geometry('600x800')
 
-    ventana.title('Formulario de usuario')
+    ventana.title('Registro de usuario')
     ventana.iconbitmap('images/logo.ico')
 
-    encabezado = Label(ventana, text='Formulario de Usuario')
+    encabezado = Label(ventana, text='Registro de Usuario')
     encabezado.config(
         fg='white',
         bg='darkblue',
@@ -127,9 +127,9 @@ def formulario_usuario():
 
     #funcion para crear una lista con los datos del usuario
     def mostrarTipoUsuario():
-        label = Label(ventana, text='Ingrese el numero 4 para Encargado')
+        label = Label(ventana, text='Ingrese el numero 1 para Administrador')
         label.grid(row=12, column=1, padx=5, pady=5)
-        label2 = Label(ventana, text='Ingrese el numero 5 para Administrador')
+        label2 = Label(ventana, text='Ingrese el numero 2 para Encargado')
         label2.grid(row=13, column=1, padx=5, pady=5)
 
     boton = Button(ventana, text='Mostrar tipos de usuario', command=mostrarTipoUsuario)
