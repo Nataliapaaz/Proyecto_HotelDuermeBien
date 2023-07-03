@@ -164,3 +164,43 @@ class DAO():
         count = self.__cursor.fetchone()[0]
         self.fin()
         return count>0
+    
+    def idUsuarios(self):
+        self.inicio()
+        sql = "SELECT idUsuario FROM usuario"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def idHuespedes(self):
+        self.inicio()
+        sql = "SELECT idHuesped FROM huesped"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def idReserva(self):
+        self.inicio()
+        sql = "SELECT idReserva FROM reserva"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def idTipoHabitacion(self):
+        self.inicio()
+        sql = "SELECT idHabitacion FROM tipohabitacion"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
+    
+    def idHabitacion(self):
+        self.inicio()
+        sql = "SELECT codigoHabitacion FROM habitacion"
+        self.__cursor.execute(sql)
+        datos = self.__cursor.fetchall()
+        self.fin()
+        return datos
