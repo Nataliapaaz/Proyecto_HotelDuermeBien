@@ -50,6 +50,19 @@ def registrarUsuario():
         print("Error: El tipo de usuario ingresado no es válido.") 
 
 
+def registrarTipoUsuario(lista_tipos_usuario):
+    
+    while True:    
+        nombreTipoUsuario = input('Ingrese si es Encargado o Administrador: ').lower()
+    
+        if nombreTipoUsuario == "encargado":
+            tipoUsuario = TipoUsuario(nombreTipoUsuario, )
+            dao = DAO()
+            dao.registrarTipoUsuario(tipoUsuario)
+            break
+        elif nombreTipoUsuario == "administrador":
+
+
 def registrarTipoUsuario():
     dao = DAO()
     nombreTipoUsuario = input('Ingrese si es Encargado o Administrador: ').lower()
