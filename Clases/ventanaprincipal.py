@@ -10,13 +10,15 @@ def cerrarVentana():
 ventana = Tk()
 ventana.geometry('700x400')
 
-ventana.title('Hotel Duerme Bien App')
+ventana.title('Hotel Nirvana App')
 ventana.iconbitmap('images/logo.ico')
+ventana.configure(bg='#A4B2D7')
 
-texto = Label(ventana, text='Bienvenido a Duerme Bien App')
+
+texto = Label(ventana, text='Bienvenido a Hotel Nirvana App')
 texto.config(
             fg='white',
-            bg='black',
+            bg='#625E9F',
             padx=200,
             pady=30,
             font=('Century Gothic', 24)

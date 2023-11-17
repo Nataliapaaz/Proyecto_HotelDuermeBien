@@ -7,11 +7,12 @@ def formulario_habitaciones():
     ventana.geometry('600x800')
 
     ventana.title('Cargar habitaciones')
+    ventana.configure(bg='#A4B2D7')
 
     encabezado = Label(ventana, text='Cargar habitacion')
     encabezado.config(
         fg='white',
-        bg='darkblue',
+        bg='#625E9F',
         font=('Century Gothic', 18),
         padx=20,
         pady=20)

@@ -6,25 +6,23 @@ from formularioUsuario import formulario_usuario
 
 
 
-
-
 def menu():
     ventana = Tk()
     ventana.geometry('900x650')
 
     ventana.title('Hotel Duerme Bien App')
     ventana.iconbitmap('images/logo.ico')
+    ventana.configure(bg='#A4B2D7')
 
-    texto = Label(ventana, text='Bienvenido a Duerme Bien App')
+    texto = Label(ventana, text='Bienvenido Hotel Nirvana App')
     texto.config(
             fg='white',
-            bg='black',
+            bg='#625E9F',
             padx=200,
             pady=30,
             font=('Century Gothic', 24)
             )
     texto.grid(row=0, column=0, columnspan=3)
-
 
 
     boton = Button(ventana, text='Registro de Usuario' , command = formulario_usuario)

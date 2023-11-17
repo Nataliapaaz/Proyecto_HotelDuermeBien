@@ -8,11 +8,12 @@ def formulario_huesped():
     ventana.geometry('600x800')
 
     ventana.title('Registro de huesped')
+    ventana.configure(bg='#A4B2D7')
 
     encabezado = Label(ventana, text='Registro de Huesped')
     encabezado.config(
         fg='white',
-        bg='darkblue',
+        bg='#625E9F',
         font=('Century Gothic', 18),
         padx=20,
         pady=20)
